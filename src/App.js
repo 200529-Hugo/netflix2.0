@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import Movie from './components/movie';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+const KEY_API = "4a3df646f07f4da444876af8342211e9"
+const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?api_key="+ KEY_API +"&sort_by=popularity.desc&page=1";
+const IMG_API = "https://image.tmdb.org/t/p/w1280";
+const SEARCH_API = "https://api.themoviedb.org/3/search/company?api_key="+ KEY_API +"&page=1&query="
+
+const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() =>{
+    getMovies(FEATURED_API);
+  }, [])
+
+  const getMovies = (API) =>{
+    fetch(API)
+    .then((res) => res.json())
+    .then((data) => {
+      setMovies(data.results);
+    })
+  }
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    if(searchTerm){
+      getMovies(SEARCH_API + searchTerm)
+      setSearchTerm("");
+    }
+  }
+
+  const handleOnChange = (e) => {
+    setSearchTerm(e.target.value);
+  }
+
+  return(
+    <div>
+      <header>
+        <form onSubmit={handleOnSubmit}>
+          <input 
+            className='search' 
+            type="search" 
+            placeholder='Search...' 
+            value={searchTerm} 
+            onChange={handleOnChange} 
+          />
+        </form>
+        
       </header>
+      <div>
+        {movies.length > 0 && movies.map((movie) => 
+          <Movie key={movie.id} {...movie} />
+        )}
+      </div>
     </div>
-  );
-}
+  )
+};
 
 export default App;
