@@ -50,6 +50,7 @@ const App = () => {
         
       </header>
       <div>
+        Just  a testing
         {movies.length > 0 && movies.map((movie) => 
           <Movie key={movie.id} {...movie} />
         )}
