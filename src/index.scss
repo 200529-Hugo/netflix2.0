@@ -11,8 +11,17 @@ body {
   
 }
 
+.movie{
+  width: 10%;
+}
+
+.movie:not(:first-of-type){
+  float: left;
+}
+
 img{
   background-color: $white;
+  width: 100%;
 }
 
 code {
