@@ -1,63 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import Movie from './components/movie';
+// import logo from './logo.svg';
+import './App.css';
+import Row from "./Row.js"
+import requests from "./requests.js";
+import Banner from "./Banner.js";
+import Navbar from "./Navbar.js";
+import Footer from "./Footer.js";
+import { Link } from 'react-router-dom'
 
-const KEY_API = "4a3df646f07f4da444876af8342211e9"
-const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?api_key="+ KEY_API +"&sort_by=popularity.desc&page=1";
-const IMG_API = "https://image.tmdb.org/t/p/w1280";
-const SEARCH_API = "https://api.themoviedb.org/3/search/company?api_key="+ KEY_API +"&page=1&query="
-
-const App = () => {
-  const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() =>{
-    getMovies(FEATURED_API);
-  }, [])
-
-  const getMovies = (API) =>{
-    fetch(API)
-    .then((res) => res.json())
-    .then((data) => {
-      setMovies(data.results);
-    })
-  }
-
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-
-    if(searchTerm){
-      getMovies(SEARCH_API + searchTerm)
-      setSearchTerm("");
-    }
-  }
-
-  const handleOnChange = (e) => {
-    setSearchTerm(e.target.value);
-  }
-
-  return(
-    <div>
-      <header>
-        <form onSubmit={handleOnSubmit}>
-          <input 
-            className='search' 
-            type="search" 
-            placeholder='Search...' 
-            value={searchTerm} 
-            onChange={handleOnChange} 
-          />
-        </form>
-        
-      </header>
-      <div>
-        Movies:
-        <br></br>
-        {movies.length > 0 && movies.map((movie) => 
-          <Movie key={movie.id} {...movie} />
-        )}
-      </div>
+function App() {
+  return (
+    <div className="App">
+        {/* <Link>home</Link> */}
+        <Navbar />
+       <Banner />
+      <Row title="Netflix originals"
+       fetchUrl={requests.fetchNetflixOriginals}
+       isLargeRow={true}
+       /> 
+      <Row title="Trendig now" fetchUrl={requests.fetchTrending}/>
+      <Row title="Top Rated" fetchUrl={requests.fetchTopRated}/>
+      <Row title="Action Movies" fetchUrl={requests.fetchActionMovies}/>
+      <Row title="Comedey Movies" fetchUrl={requests.fetchComedyMovies}/>
+      <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies}/>
+      <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies}/>
+      <Row title="Documentaries" fetchUrl={requests.fetchDocumantaries}/>
+      <Footer />
     </div>
-  )
-};
+  );
+}
 
 export default App;

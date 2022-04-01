@@ -1,0 +1,46 @@
+.row {
+  margin-left: 50px;
+}
+
+.row__posters {
+  display: flex;
+  transition: transform 450ms;
+  margin-right: 10px;
+  padding: 10px;
+  overflow-y: hidden;
+  overflow-y: scroll;
+}
+.row__posters::-webkit-scrollbar {
+  display: none;
+}
+
+.image {
+  max-height: 160px;
+  transition: transform 450ms;
+  margin-right: 10px;
+  width: 300px;
+}
+.image:hover  {
+  transform: scale(1.08)
+  
+}
+h2 {
+  color: white;
+  margin-top: 50px;
+}
+.imageLarge {
+  max-height: 250px;
+}
+.imageLarge:hover {
+  transform: scale(1.09);
+}
+.hover{
+  color: red;
+  display: block;
+  width: 300px;
+  max-height: 160px;
+  background-color: #181818;
+  box-shadow: 0px 0px 1px 1px;
+  transform: scale(1.08);
+  /* display: none; */
+}

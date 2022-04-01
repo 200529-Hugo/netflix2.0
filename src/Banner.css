@@ -1,0 +1,60 @@
+.myBanner {
+  height: 600px;
+  background-size: "cover";
+  background-position: "center center";
+  color: #fff;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+h1 {
+  padding-top: 200px;
+  margin-left: 40px;
+  font-size: 3rem;
+}
+
+.buttons {
+  margin-left: 40px;
+}
+.button {
+  width: 60px;
+  padding: 10px;
+  background-color: white;
+  /* border: solid gray 1px; */
+  border-radius: 4px;
+  border: none;
+  color: black;
+  font-weight: bolder;
+  float: left;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 0px 0px black;
+}
+.button:hover {
+  background-color: rgb(230, 230, 230);
+}
+.info {
+  width: 150px;
+  background-color: rgba(109, 109, 110, 0.7);
+  color: white;
+}
+.info:hover {
+  background-color: rgba(40, 40, 40, 0.5);
+}
+
+.description {
+  width: 400px;
+  color: white;
+  line-height: 1.4;
+  font-size: 15px;
+  margin-left: 40px;
+  height: 100px;
+}
+.bottom {
+  height: 250px;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #111
+  );
+}
